@@ -1,4 +1,3 @@
-
 -- create database clinicdb
 CREATE TABLE Office (
     office_id INT PRIMARY KEY NOT NULL,
