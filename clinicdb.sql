@@ -1,3 +1,4 @@
+
 -- create database clinicdb
 CREATE TABLE Office (
     office_id INT PRIMARY KEY NOT NULL,
@@ -240,6 +241,14 @@ AS SELECT 	D.first_name AS doctor_first_name, D.last_name AS doctor_last_name, D
 FROM Doctor AS D
 INNER JOIN Nurse AS N ON D.office_id = N.office_id
 INNER JOIN Receptionist AS R ON D.office_id = R.office_id;
+
+CREATE VIEW Doctor_Appointments
+AS SELECT	D.first_name AS doctor_first_name, D.last_name AS doctor_last_name,
+			P.first_name AS patient_first_name, P.last_name AS patient_last_name,
+            A.app_date AS appointment_date, A.app_start_time AS appointment_start_time, A.reason_for_visit
+FROM Appointment AS A
+INNER JOIN Doctor AS D ON A.D_ID = D.employee_ssn
+INNER JOIN Patient AS P ON A.P_ID = P.patient_id;
 
 DELIMITER //
 CREATE TRIGGER No_Referral
